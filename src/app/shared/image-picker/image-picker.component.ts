@@ -14,6 +14,6 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 export class ImagePickerComponent {
 	@Input() image?: string;
 	@Input() placeholder: string = 'balloons.png';
-	@Input() hint: string = 'Choose a picture';
+	@Input() hint: string = 'Set Cover Image';
 	@Input() icon: IconDefinition = faCamera;
 }

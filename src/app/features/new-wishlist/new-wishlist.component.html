@@ -1,4 +1,4 @@
-<div class="container p-5 d-flex flex-column align-items-center">
+<div class="container p-5">
 	<!--Title-->
 	<h4 class="text-center mb-5">Start creating your new wishlist!</h4>
 
@@ -8,18 +8,22 @@
 	<!--Form-->
 	<form [formGroup]="form" class="d-flex flex-column gap-4">
 		<!--Name-->
-		<app-input-group
-			label="Name"
-			placeholder="Name your wishlist"
-			[control]="nameControl"
+		<input
+			type="text"
+			class="form-control"
+			placeholder="Title"
+			formControlName="name"
 		/>
 
 		<!--Description-->
-		<app-expandable-textarea
-			label="Description"
-			placeholder="Describe your wishlist"
-			[control]="nameControl"
-		/>
+		<textarea
+			#textarea
+			type="text"
+			class="form-control"
+			placeholder="Description (optional)"
+			formControlName="description"
+		>
+		</textarea>
 	</form>
 
 	<!--Save-->
