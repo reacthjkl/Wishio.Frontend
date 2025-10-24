@@ -1,1 +1,31 @@
-<p>new-wishlist works!</p>
+<div class="container p-5 d-flex flex-column align-items-center">
+	<!--Title-->
+	<h4 class="text-center mb-5">Start creating your new wishlist!</h4>
+
+	<!--Picture Picker-->
+	<app-image-picker class="mb-4" />
+
+	<!--Form-->
+	<form [formGroup]="form" class="d-flex flex-column gap-4">
+		<!--Name-->
+		<app-input-group
+			label="Name"
+			placeholder="Name your wishlist"
+			[control]="nameControl"
+		/>
+
+		<!--Description-->
+		<app-expandable-textarea
+			label="Description"
+			placeholder="Describe your wishlist"
+			[control]="nameControl"
+		/>
+	</form>
+
+	<!--Save-->
+	<div class="row mt-4">
+		<button class="btn btn-primary" (click)="save()">
+			I'm ready to add some items!
+		</button>
+	</div>
+</div>
