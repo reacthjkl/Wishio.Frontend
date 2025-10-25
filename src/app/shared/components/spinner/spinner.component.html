@@ -1,0 +1,16 @@
+<!--Background-->
+<div class="spinner-background">
+	<!--Content-->
+	<div [class]="'spinner-content' + (loadingMessage ? ' card' : '')">
+		<!--Rotating element-->
+		<div
+			class="spinner-border text-primary"
+			role="status">
+			<!-- Hidden text for accessibility-->
+			<span class="visually-hidden">Loading...</span>
+		</div>
+
+		<!--Loading message-->
+		<span class="loading-message">{{ loadingMessage }}</span>
+	</div>
+</div>

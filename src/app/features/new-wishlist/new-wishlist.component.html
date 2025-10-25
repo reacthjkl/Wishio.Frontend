@@ -6,30 +6,69 @@
 	<app-image-picker class="mb-4" />
 
 	<!--Form-->
-	<form [formGroup]="form" class="d-flex flex-column gap-4">
-		<!--Name-->
-		<input
-			type="text"
-			class="form-control"
-			placeholder="Title"
-			formControlName="name"
-		/>
+	@if (form) {
+		<form [formGroup]="form" class="d-flex flex-column gap-4">
+			<!--Name-->
+			@let nameControl = form.get('name');
+			@if (nameControl) {
+				<div class="form-group">
+					<input
+						type="text"
+						class="form-control"
+						[class.is-invalid]="nameControl.errors && nameControl.touched"
+						placeholder="Title"
+						formControlName="name"
+						(keyup)="showSumbit = true"
+					/>
+					<div class="invalid-feedback">
+						@if (nameControl.errors?.['required']) {
+							Please provide a title for your wishlist
+						} @else if (nameControl.errors?.['maxlength']) {
+							Provided title is too long. Maximum length is
+							{{ nameControl.errors?.['maxlength'].requiredLength }} characters
+						}
+					</div>
+				</div>
+			}
 
-		<!--Description-->
-		<textarea
-			#textarea
-			type="text"
-			class="form-control"
-			placeholder="Description (optional)"
-			formControlName="description"
-		>
-		</textarea>
-	</form>
+			<!--Description-->
+			@let descriptionControl = form.get('description');
+			@if (descriptionControl) {
+				<div class="form-group">
+					<textarea
+						#textarea
+						type="text"
+						class="form-control"
+						[class.is-invalid]="
+							descriptionControl.errors && descriptionControl?.touched
+						"
+						placeholder="Description (optional)"
+						formControlName="description"
+					>
+					</textarea>
+
+					<div class="invalid-feedback">
+						@if (descriptionControl.errors?.['maxlength']) {
+							Provided description is too long. Maximum length is
+							{{ descriptionControl.errors?.['maxlength'].requiredLength }}
+							characters
+						}
+					</div>
+				</div>
+			}
+		</form>
+	}
 
 	<!--Save-->
-	<div class="row mt-4">
-		<button class="btn btn-primary" (click)="save()">
-			I'm ready to add some items!
-		</button>
-	</div>
+	@if (showSumbit) {
+		<div class="row mt-4">
+			<button
+				class="btn btn-primary btn-fade-in"
+				(click)="save()"
+				[disabled]="!form.valid"
+			>
+				Let's add some items!
+			</button>
+		</div>
+	}
 </div>

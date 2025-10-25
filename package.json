@@ -29,6 +29,7 @@
     "autosize": "^6.0.1",
     "bootstrap": "^5.3.3",
     "flatpickr": "^4.6.13",
+    "notyf": "^3.10.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

@@ -4,10 +4,12 @@ import {
 	FormGroup,
 	FormsModule,
 	ReactiveFormsModule,
+	Validators,
 } from '@angular/forms';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import autosize from 'autosize';
-import { ImagePickerComponent } from '../../shared/image-picker/image-picker.component';
+import { ImagePickerComponent } from '../../shared/components/image-picker/image-picker.component';
+import { WishlistService } from '../../shared/services/wishlist.service';
 
 @Component({
 	selector: 'app-new-wishlist',
@@ -23,16 +25,22 @@ import { ImagePickerComponent } from '../../shared/image-picker/image-picker.com
 })
 export class NewWishlistComponent {
 	public form: FormGroup = new FormGroup({
-		name: new FormControl(''),
-		description: new FormControl(''),
-		date: new FormControl(''),
+		name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+		description: new FormControl('', [Validators.maxLength(2000)]),
 	});
+
+	public showSumbit: boolean = false;
+
+	constructor(private wishlistSvc: WishlistService) {}
 
 	ngAfterViewInit() {
 		autosize(document.querySelectorAll('textarea'));
 	}
 
 	public async save(): Promise<void> {
-		console.log(this.form.value);
+		console.log(this.form);
+		if (!this.form.valid) return;
+
+		const success: boolean = await this.wishlistSvc.create(this.form.value);
 	}
 }
