@@ -20,6 +20,7 @@ export class NewWishlistComponent {
 	public form: FormGroup = new FormGroup({
 		name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
 		description: new FormControl('', [Validators.maxLength(2000)]),
+		pictureId: new FormControl(''),
 	});
 
 	public showSumbit: boolean = false;
@@ -31,7 +32,6 @@ export class NewWishlistComponent {
 	}
 
 	public async save(): Promise<void> {
-		console.log(this.form);
 		if (!this.form.valid) return;
 
 		const success: boolean = await this.wishlistSvc.create(this.form.value);

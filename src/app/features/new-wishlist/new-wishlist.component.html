@@ -3,7 +3,10 @@
 	<h4 class="text-center mb-5">Start creating your new wishlist!</h4>
 
 	<!--Picture Picker-->
-	<app-image-picker class="mb-4" />
+	<app-image-picker
+		class="mb-4"
+		(uploaded)="this.form.get('pictureId')?.patchValue($event)"
+	/>
 
 	<!--Form-->
 	@if (form) {
