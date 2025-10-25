@@ -6,20 +6,13 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import autosize from 'autosize';
 import { ImagePickerComponent } from '../../shared/components/image-picker/image-picker.component';
 import { WishlistService } from '../../shared/services/wishlist.service';
 
 @Component({
 	selector: 'app-new-wishlist',
-	imports: [
-		ReactiveFormsModule,
-		ImagePickerComponent,
-		FormsModule,
-		NgbDatepickerModule,
-		FormsModule,
-	],
+	imports: [ReactiveFormsModule, ImagePickerComponent, FormsModule],
 	templateUrl: './new-wishlist.component.html',
 	styleUrl: './new-wishlist.component.scss',
 })
